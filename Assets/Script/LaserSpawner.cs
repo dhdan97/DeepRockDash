@@ -27,6 +27,19 @@ public class LaserSpawner : MonoBehaviour
     void Start()
     {
         startSpawn(); // We will start the spawn when the game starts
+        InvokeRepeating("RemoveLasers", 10.0f, 5.0f);
+    }
+
+    void RemoveLasers()
+    {
+        GameObject[] Lasers = GameObject.FindGameObjectsWithTag("laser");
+        foreach (GameObject laser in Lasers)
+        {
+            if(laser.transform.position.x < -15.0)
+            {
+                Destroy(laser);
+            }
+        }
     }
 
     public void startSpawn()
@@ -60,10 +73,16 @@ public class LaserSpawner : MonoBehaviour
     void OnSpaceGuyDeath()
     {
         stopSpawn();
+        GameObject[] Lasers = GameObject.FindGameObjectsWithTag("laser");
+        foreach(GameObject laser in Lasers)
+        {
+            laser.GetComponent<Rigidbody2D>().velocity = Vector2.left * 0;
+        }
     }
 
     private void OnDestroy()
     {
         Kill.onKill -= OnSpaceGuyDeath;
     }
+
 }
