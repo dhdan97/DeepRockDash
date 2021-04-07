@@ -6,16 +6,20 @@ public class GemSpawner : MonoBehaviour {
   public GameObject gemPrefab;
   public float moveSpeed;
   public float spawnDelay;
-  
+
+  public int YMinOffset; 
+  public int YMaxOffset; 
+
   void Start(){
     StartSpawn();
-    InvokeRepeating("RemoveGems", 10.0f, 5.0f);
+    InvokeRepeating("RemoveGems", 4.5f, spawnDelay);
     Kill.onKill += OnSpaceGuyDeath;
   }
 
   IEnumerator StartSpawnCo(){
     while(true){
-      GameObject gems = Instantiate(gemPrefab, transform.position, Quaternion.identity);
+      Vector3 randYOffset = new Vector3(transform.position.x, Random.Range(YMinOffset, YMaxOffset), 0);
+      GameObject gems = Instantiate(gemPrefab, randYOffset, Quaternion.identity);
       gems.GetComponent<Rigidbody2D>().velocity = Vector2.left * moveSpeed;
       yield return new WaitForSeconds(spawnDelay);
     }
@@ -34,7 +38,7 @@ public class GemSpawner : MonoBehaviour {
     switch(action){
       case "destroy":
         foreach (GameObject gem in Gems){
-          if(gem.transform.position.x < -15.0)  Destroy(gem);
+          if(gem.transform.position.x < -5.0)  Destroy(gem);
         }
       break;
       case "pause":
