@@ -265,8 +265,8 @@ GameObject:
   - component: {fileID: 322389155}
   - component: {fileID: 322389154}
   - component: {fileID: 322389153}
-  - component: {fileID: 322389152}
   - component: {fileID: 322389156}
+  - component: {fileID: 322389152}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -286,7 +286,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aabefbc02d2c5544d805772266b9c2c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerClimb: 5
+  boost: 0.1
+  playerClimb: 2
 --- !u!50 &322389153
 Rigidbody2D:
   serializedVersion: 4
