@@ -3,14 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class GemSpawner : MonoBehaviour {
-  public GameObject gemPrefab;
+  public GameObject[] typeOfGems;
   public float moveSpeed;
   public float spawnDelay;
+  public int YMinOffset;
+  public int YMaxOffset;
 
-  public int YMinOffset; 
-  public int YMaxOffset; 
 
+  private int typeOfGemsLength = 0;
+  private GameObject currentGems;
+ 
   void Start(){
+    typeOfGemsLength = typeOfGems.Length;
     StartSpawn();
     InvokeRepeating("RemoveGems", 4.5f, spawnDelay);
     Kill.onKill += OnSpaceGuyDeath;
@@ -19,8 +23,9 @@ public class GemSpawner : MonoBehaviour {
   IEnumerator StartSpawnCo(){
     while(true){
       Vector3 randYOffset = new Vector3(transform.position.x, Random.Range(YMinOffset, YMaxOffset), 0);
-      GameObject gems = Instantiate(gemPrefab, randYOffset, Quaternion.identity);
-      gems.GetComponent<Rigidbody2D>().velocity = Vector2.left * moveSpeed;
+
+      currentGems = Instantiate(typeOfGems[Random.Range(0, typeOfGemsLength)], randYOffset, Quaternion.identity);
+      currentGems.GetComponent<Rigidbody2D>().velocity = Vector2.left * moveSpeed;
       yield return new WaitForSeconds(spawnDelay);
     }
   }

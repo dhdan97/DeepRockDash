@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameOver : MonoBehaviour
 {
-    public GameObject gameOver; // The gameOver gameobject under the Canvas gameobject
-    public string gameSceneName; // The name of our game scene
+  public GameObject gameOver; // The gameOver gameobject under the Canvas gameobject
+  public string gameSceneName; // The name of our game scene
+  public Score score;
 
     private void Awake()
     {
@@ -16,7 +18,7 @@ public class GameOver : MonoBehaviour
     void OnGameOver()
 	{
     gameOver.SetActive(true); // Sets the active state of the gameOver panel to true
-	}
+  }
 
     public void RestartGame()
 	{
