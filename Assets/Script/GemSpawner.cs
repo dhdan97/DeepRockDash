@@ -16,7 +16,7 @@ public class GemSpawner : MonoBehaviour {
   void Start(){
     typeOfGemsLength = typeOfGems.Length;
     StartSpawn();
-    InvokeRepeating("RemoveGems", 4.5f, spawnDelay);
+    InvokeRepeating("RemoveGems", moveSpeed, spawnDelay+0.5f);
     Kill.onKill += OnSpaceGuyDeath;
   }
 
@@ -43,7 +43,7 @@ public class GemSpawner : MonoBehaviour {
     switch(action){
       case "destroy":
         foreach (GameObject gem in Gems){
-          if(gem.transform.position.x < -5.0)  Destroy(gem);
+          if(gem.transform.position.x < -7.0) Destroy(gem);
         }
       break;
       case "pause":

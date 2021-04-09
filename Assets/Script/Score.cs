@@ -29,7 +29,6 @@ public class Score : MonoBehaviour {
     UpdateScore(0);
   }
 
-
   void UpdateScore(int increment){
     score += increment;
     scoreText.text = score + "";
@@ -42,8 +41,7 @@ public class Score : MonoBehaviour {
   }
 
   void OnDeath(){
-    if (score > highScore)
-		{
+    if (score > highScore){
       PlayerPrefs.SetInt("HighScore", score); // Saves the high score into our "HighScore" key
 		}
     gameOverScoreText.text = "Score: " + score;

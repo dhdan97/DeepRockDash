@@ -180,8 +180,13 @@ MonoBehaviour:
   typeOfGems:
   - {fileID: 1627531105725918516, guid: 2f91baa43be747e419ba8918b8953a85, type: 3}
   - {fileID: 1443869483962163197, guid: 3b4bc9c9beaee1c42889fcec00a205a7, type: 3}
-  moveSpeed: 5
-  spawnDelay: 3
+  - {fileID: 1428963240621782129, guid: 52792bb011ae16e4cbf5db9dfc2a8987, type: 3}
+  - {fileID: 4506883227366262417, guid: 7da276a790c55bf48af4ddc162b61b06, type: 3}
+  - {fileID: 7080437295363065731, guid: 7050970ceae45e8439f265dfcaed548d, type: 3}
+  - {fileID: 8435000527697395982, guid: 8e858c90812b1b34e83d74c88c866ef7, type: 3}
+  - {fileID: 5963931014093912206, guid: 9afc7b877793a104391a18c8afe68933, type: 3}
+  moveSpeed: 6
+  spawnDelay: 1
   YMinOffset: -3
   YMaxOffset: 3
 --- !u!1 &311661523
