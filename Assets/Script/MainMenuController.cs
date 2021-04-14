@@ -1,27 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MainMenuController : MonoBehaviour
-{
+public class MainMenuController : MonoBehaviour {
     // Start is called before the first frame update
-
     public string sceneName; // The name of our game scene
-
-    void Start()
-    {
-        
+    public AudioSource selectSound;
+    void Start(){
+      selectSound = GetComponent<AudioSource>();
     }
-
-    public void goToScene()
-    {
-        SceneManager.LoadScene(sceneName);
+    public async void goToScene(){
+      selectSound.Play();
+      await Task.Delay(700);
+      SceneManager.LoadScene(sceneName);
     }
-
     // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    void Update(){}
 }

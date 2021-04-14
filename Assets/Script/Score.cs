@@ -7,10 +7,14 @@ public class Score : MonoBehaviour {
   public Text scoreText;
   public Text gameOverScoreText;
   public Text gameOverHighScoreText;
-  public static Score instance;
+  public GameObject GameOverCanvas;
+  public GameObject NameText;
+  public GameObject NameInputField;
 
-  public int score;
-  public int highScore;
+  private AudioSource getGemSound;
+  public static Score instance;
+  public static int score;
+  public static int highScore;
 
   private void Awake(){
     if (instance != null && instance != this){
@@ -25,11 +29,13 @@ public class Score : MonoBehaviour {
   }
 
   private void Start(){
+    getGemSound = GetComponent<AudioSource>();
     highScore = PlayerPrefs.GetInt("HighScore", 0);
-    UpdateScore(0);
+    score = 0;
   }
 
   void UpdateScore(int increment){
+    getGemSound.Play();
     score += increment;
     scoreText.text = score + "";
     Debug.Log(score);
@@ -41,11 +47,14 @@ public class Score : MonoBehaviour {
   }
 
   void OnDeath(){
-    if (score > highScore){
+
+    /*if (score > highScore){
       PlayerPrefs.SetInt("HighScore", score); // Saves the high score into our "HighScore" key
-		}
+		}*/
     gameOverScoreText.text = "Score: " + score;
-    gameOverHighScoreText.text = "High Score: " + PlayerPrefs.GetInt("HighScore");
-    Debug.Log("Current High Score is: " + PlayerPrefs.GetInt("HighScore"));
+    gameOverHighScoreText.text = "Lowest High Score: " + PlayerPrefs.GetInt("HighScore");
+    Debug.Log("High Score is: " + PlayerPrefs.GetInt("HighScore"));
   }
+
+
 }

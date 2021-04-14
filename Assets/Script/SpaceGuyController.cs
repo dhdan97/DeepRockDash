@@ -4,6 +4,8 @@ using UnityEngine;
 using System;
 
 public class SpaceGuyController : MonoBehaviour {
+  public AudioSource spaceGuyDeath;
+  public AudioSource spaceRocketThrust;
   Rigidbody2D spaceGuy;
   public float boost = 0; // Rate of rocket boosters climb
   public float playerClimb = 0; // Current rocket booster climb
@@ -34,12 +36,14 @@ public class SpaceGuyController : MonoBehaviour {
     if (spaceGuy.velocity.y < -0.1) playerClimb = initClimb; // Check if falling to reset rocket boost
     bool pressedSpace = Input.GetButton("Space"); // Detect rocket being used afterwards
     if (pressedSpace){
+      spaceRocketThrust.Play();
       spaceGuy.velocity = new Vector2(spaceGuy.velocity.x, playerClimb);
       playerClimb += boost;
     }   
   }
 
   void OnDeath(){
+    spaceGuyDeath.Play();
     canMove = false;
     GetComponent<BoxCollider2D>().enabled = false; // So spaceGuy doesn't collect any coins when they die
     StopAllCoroutines();
