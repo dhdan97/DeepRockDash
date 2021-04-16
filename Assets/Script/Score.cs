@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class Score : MonoBehaviour {
@@ -55,6 +53,4 @@ public class Score : MonoBehaviour {
     gameOverHighScoreText.text = "Lowest High Score: " + PlayerPrefs.GetInt("HighScore");
     Debug.Log("High Score is: " + PlayerPrefs.GetInt("HighScore"));
   }
-
-
 }

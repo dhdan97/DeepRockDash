@@ -1,31 +1,24 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class backgroundLoop : MonoBehaviour
-{
+public class backgroundLoop : MonoBehaviour {
   public GameObject[] levels;
   private Camera mainCamera;
   private Vector2 screenBounds;
 
-    // Start is called before the first frame update
-    void Start()
-    {
+  // Start is called before the first frame update
+  void Start() {
     mainCamera = gameObject.GetComponent<Camera>();
     screenBounds = mainCamera.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, mainCamera.transform.position.z));
-    foreach(GameObject obj in levels)
-		{
+    foreach(GameObject obj in levels){
       loadChildObjects(obj);
 		}
-   }
+  }
 
-  void loadChildObjects(GameObject obj)
-	{
+  void loadChildObjects(GameObject obj){
     float objectWidth = obj.GetComponent<SpriteRenderer>().bounds.size.x;
     int childsNeeded = (int)Mathf.Ceil(screenBounds.x * 2 / objectWidth);
     GameObject clone = Instantiate(obj) as GameObject;
-    for(int i = 0; i <= childsNeeded; i++)
-		{
+    for(int i = 0; i <= childsNeeded; i++){
       GameObject c = Instantiate(clone) as GameObject;
       c.transform.SetParent(obj.transform);
       c.transform.position = new Vector3(objectWidth * i, obj.transform.position.y, obj.transform.position.z);
@@ -35,24 +28,20 @@ public class backgroundLoop : MonoBehaviour
     Destroy(obj.GetComponent<SpriteRenderer>());
   }
 
-  void repositionChildObjects(GameObject obj)
-	{
+  void repositionChildObjects(GameObject obj){
     Transform[] children = obj.GetComponentsInChildren<Transform>();
-    if(children.Length > 1)
-		{
+    if(children.Length > 1){
       GameObject firstChild = children[1].gameObject;
       GameObject lastChild = children[children.Length - 1].gameObject;
 
       float halfObjectWidth = lastChild.GetComponent<SpriteRenderer>().bounds.extents.x;
-      if (transform.position.x + screenBounds.x > lastChild.transform.position.x + halfObjectWidth)
-			{
+      if (transform.position.x + screenBounds.x > lastChild.transform.position.x + halfObjectWidth){
         firstChild.transform.SetAsLastSibling();
         firstChild.transform.position = new Vector3(lastChild.transform.position.x + halfObjectWidth * 2,
                                                     lastChild.transform.position.y,
                                                     lastChild.transform.position.z);
 			}
-      else if(transform.position.x - screenBounds.x < firstChild.transform.position.x - halfObjectWidth)
-			{
+      else if(transform.position.x - screenBounds.x < firstChild.transform.position.x - halfObjectWidth){
         lastChild.transform.SetAsFirstSibling();
         lastChild.transform.position = new Vector3(firstChild.transform.position.x - halfObjectWidth * 2,
                                                     lastChild.transform.position.y,
@@ -62,10 +51,8 @@ public class backgroundLoop : MonoBehaviour
 	}
 
     // Update is called once per frame
-  void LateUpdate()
-  {
-        foreach(GameObject obj in levels)
-		{
+  void LateUpdate(){
+        foreach(GameObject obj in levels){
       repositionChildObjects(obj);
 
 		}

@@ -5,10 +5,7 @@ public class MainMenuMusic : MonoBehaviour {
   public float spawnDelay;
   void Awake(){
     GameObject[] objs = GameObject.FindGameObjectsWithTag("mainmusic");
-
-    if (objs.Length > 1){
-      Destroy(this.gameObject);
-    }
+    if (objs.Length > 1) Destroy(this.gameObject);
 
     DontDestroyOnLoad(this.gameObject);
   }

@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GemSpawner : MonoBehaviour {
@@ -8,7 +7,6 @@ public class GemSpawner : MonoBehaviour {
   public float spawnDelay;
   public int YMinOffset;
   public int YMaxOffset;
-
 
   private int typeOfGemsLength = 0;
   private GameObject currentGems;
