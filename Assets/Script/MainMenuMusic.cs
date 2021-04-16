@@ -1,9 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+﻿using UnityEngine;
 
 public class MainMenuMusic : MonoBehaviour {
+  public float moveSpeed;
+  public float spawnDelay;
   void Awake(){
     GameObject[] objs = GameObject.FindGameObjectsWithTag("mainmusic");
 

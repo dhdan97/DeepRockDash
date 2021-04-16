@@ -1,12 +1,13 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class LaserSpawner : MonoBehaviour
-{
+public class LaserSpawner : MonoBehaviour {
+    private GameObject gameObj;
+    private MainMenuMusic spawnData;
+
     public GameObject laserPrefab; // Our laser gameobject from the prefab asset folder
-    public float moveSpeed; // Speed of our laser (future addition: vary moveSpeed?)
-    public float spawnDelay; // The delay between each laser spawn
+    private float moveSpeed; // Speed of our laser (future addition: vary moveSpeed?)
+    private float spawnDelay; // The delay between each laser spawn
 
     public int rotationMinOffset; // The min possible angle the laser will spawn with
     public int rotationMaxOffset; // The max possible angle the laser wil spawn with
@@ -17,17 +18,20 @@ public class LaserSpawner : MonoBehaviour
     public float scaleMinOffset; // The min possible scale the laser will spawn as
     public float scaleMaxOffset; // The max possible scale the laser will spawn as
 
-    private void Awake()
-    {
-        Kill.onKill += OnSpaceGuyDeath; // subscribe to onDeath event
+    private void Awake(){
+      Kill.onKill += OnSpaceGuyDeath; // subscribe to onDeath event
     }
 
-
     // Start is called before the first frame update
-    void Start()
-    {
-        startSpawn(); // We will start the spawn when the game starts
-        InvokeRepeating("RemoveLasers", 10.0f, 5.0f);
+    void Start(){
+      gameObj = GameObject.Find("MainMenuMusic");
+      spawnData = gameObj.GetComponent<MainMenuMusic>();
+      moveSpeed = spawnData.moveSpeed != 0 ? spawnData.moveSpeed : 3;
+      spawnDelay = spawnData.spawnDelay !=0 ? spawnData.spawnDelay: 6;
+      Debug.Log("MOVE SPEED FROM OBJECT:\t" + moveSpeed);
+      Debug.Log("SPAWN DELAY FROM OBJECT:\t" + spawnDelay);
+      startSpawn(); // We will start the spawn when the game starts
+      InvokeRepeating("RemoveLasers", 10.0f, 5.0f);
     }
 
     void RemoveLasers()

@@ -26,8 +26,8 @@ public class SpaceGuyController : MonoBehaviour {
     playerClimb = playerClimb == 0 ? 5 : playerClimb;
     // Store init climb and debug Logs
     initClimb = playerClimb;
-    Debug.Log("Start Position X" + spaceGuy.position[0]);
-    Debug.Log("Start Position Y" + spaceGuy.position[1]);
+    //Debug.Log("Start Position X" + spaceGuy.position[0]);
+    //Debug.Log("Start Position Y" + spaceGuy.position[1]);
   }
  
   // Update is called once per frame

@@ -16,7 +16,7 @@ public class AddScore : MonoBehaviour {
 
   void OnTriggerEnter2D(Collider2D col){
     if (col.tag == "Player"){
-      Debug.Log("Current Gem NAME:\t" + gameObject.name);
+     // Debug.Log("Current Gem NAME:\t" + gameObject.name);
       foreach (KeyValuePair<string, int> gemValue in gemValues) {
         if (gameObject.name.Contains(gemValue.Key)) {
           currentGemValue = gemValue.Value;

@@ -617,7 +617,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &455109690
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2119,14 +2119,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   laserPrefab: {fileID: 3781338606901075872, guid: 167a271ec36f07c4984fd959e4071c03,
     type: 3}
-  moveSpeed: 4
-  spawnDelay: 5
   rotationMinOffset: 0
   rotationMaxOffset: 360
-  YMinOffset: -3
-  YMaxOffset: 3
-  scaleMinOffset: 0.5
-  scaleMaxOffset: 2
+  YMinOffset: -2
+  YMaxOffset: 2
+  scaleMinOffset: 1
+  scaleMaxOffset: 3
 --- !u!4 &1827331422
 Transform:
   m_ObjectHideFlags: 0
